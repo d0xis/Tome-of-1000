@@ -8,3 +8,13 @@ C:\Users\colbi\source\repos\ToOT\ToOT\obj\Debug\ToOT.csproj.GenerateResource.cac
 C:\Users\colbi\source\repos\ToOT\ToOT\obj\Debug\ToOT.csproj.CoreCompileInputs.cache
 C:\Users\colbi\source\repos\ToOT\ToOT\obj\Debug\ToOT.exe
 C:\Users\colbi\source\repos\ToOT\ToOT\obj\Debug\ToOT.pdb
+C:\Users\colbi\Source\Repos\Tome-of-1000\ToOT\bin\Debug\ToOT.exe.config
+C:\Users\colbi\Source\Repos\Tome-of-1000\ToOT\bin\Debug\ToOT.exe
+C:\Users\colbi\Source\Repos\Tome-of-1000\ToOT\bin\Debug\ToOT.pdb
+C:\Users\colbi\Source\Repos\Tome-of-1000\ToOT\obj\Debug\ToOT.csprojAssemblyReference.cache
+C:\Users\colbi\Source\Repos\Tome-of-1000\ToOT\obj\Debug\ToOT.Main_frm.resources
+C:\Users\colbi\Source\Repos\Tome-of-1000\ToOT\obj\Debug\ToOT.Properties.Resources.resources
+C:\Users\colbi\Source\Repos\Tome-of-1000\ToOT\obj\Debug\ToOT.csproj.GenerateResource.cache
+C:\Users\colbi\Source\Repos\Tome-of-1000\ToOT\obj\Debug\ToOT.csproj.CoreCompileInputs.cache
+C:\Users\colbi\Source\Repos\Tome-of-1000\ToOT\obj\Debug\ToOT.exe
+C:\Users\colbi\Source\Repos\Tome-of-1000\ToOT\obj\Debug\ToOT.pdb
