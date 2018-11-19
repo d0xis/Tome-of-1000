@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -17,66 +18,95 @@ namespace ToOT
             InitializeComponent();
         }
 
-        private void JumpTo(string Layout)
+        public string currentVol = "";
+
+        private void Main_frm_Load(object sender, EventArgs e)
         {
-            //Switch between windows layouts
-            switch (Layout)
+            toStart();
+            if (File.Exists("usr.xml")) { return; }
+            else { File.Copy("data.xml", "usr.xml"); }
+        }
+
+        private void toList()
+        {
+            this.Size = new System.Drawing.Size(1040, 610);
+            Start_group.Visible = false;
+            Start_group.Enabled = false;
+            Start_group.Location = new System.Drawing.Point(0, -100);
+            ListGroup.Location = new System.Drawing.Point(0, -10);
+            ListGroup.Enabled = true;
+            ListGroup.Visible = true;
+        }
+        private void toStart()
+        {
+            this.Size = new System.Drawing.Size(1040, 365);
+            Start_group.Location = new System.Drawing.Point(0, -10);
+            Start_group.Enabled = true;
+            Start_group.Visible = true;
+        }
+
+        public void popTree(string vol, Boolean hideComp)
+        {
+            TreeView vTree = new TreeView();
+            switch (vol)
             {
                 default:
                     MessageBox.Show("ERROR: Incorect Layout Name!");
                     break;
-                case "Select":
-                    this.Size = new System.Drawing.Size(1040, 430);
-                    Select_group.Location = new System.Drawing.Point(0, 10);
-                    Select_group.Enabled = true;
-                    Select_group.Visible = true;
-                    break;
                 case "Vol1":
-                    this.Size = new System.Drawing.Size(1040, 700);
-                    Select_group.Visible = false;
-                    Select_group.Enabled = false;
-                    Select_group.Location = new System.Drawing.Point(0, -100);
-                    Vol1_group.Location = new System.Drawing.Point(0, 10);
-                    Vol1_group.Enabled = true;
-                    Vol1_group.Visible = true;
+                    vTree = aTree;
                     break;
                 case "Vol2":
+                    vTree = aTree;
                     break;
                 case "Vol3":
+                    vTree = aTree;
                     break;
                 case "Vol4":
+                    vTree = aTree;
                     break;
-
             }
-        }
-
-        private void Main_frm_Load(object sender, EventArgs e)
-        {
-            JumpTo("Select");
+            DataSet xmlDB = new DataSet();
+            xmlDB.ReadXml("usr.xml");
+            //Populate tree from DB
+            vTree.BeginUpdate();
+            vTree.Nodes.Clear();
+            vTree.Nodes.Add(currentVol);
+            if (hideComp) { vTree.Nodes[0].Nodes.Add("True"); }
+            else { vTree.Nodes[0].Nodes.Add("False"); }
+            vTree.EndUpdate();
         }
 
         private void Vol1_pic_Click(object sender, EventArgs e)
         {
             //Vol. 1 Tome
-            JumpTo("Vol1");
+            currentVol = "Vol1";
+            toList();
+            popTree(currentVol, Hide_chk.Checked);
         }
 
         private void Vol2_pic_Click(object sender, EventArgs e)
         {
             //Vol. 2 Tome
-            JumpTo("Vol2");
+            currentVol = "Vol2";
+            toList();
+            popTree(currentVol, Hide_chk.Checked);
         }
 
         private void Vol3_pic_Click(object sender, EventArgs e)
         {
             //Vol. 3 Tome
-            JumpTo("Vol3");
+            currentVol = "Vol3";
+            toList();
+            popTree(currentVol, Hide_chk.Checked);
         }
 
         private void Vol4_pic_Click(object sender, EventArgs e)
         {
             //Vol. 4 Tome
-            JumpTo("Vol4");
+            currentVol = "Vol4";
+            toList();
+            popTree(currentVol, Hide_chk.Checked);
         }
 
         private void Exit_lbl_Click(object sender, EventArgs e)
@@ -86,10 +116,21 @@ namespace ToOT
 
         private void Back1_lbl_Click(object sender, EventArgs e)
         {
-            Vol1_group.Location = new System.Drawing.Point(0, -100);
-            Vol1_group.Enabled = false;
-            Vol1_group.Visible = false;
-            JumpTo("Select");
+            ListGroup.Location = new System.Drawing.Point(0, -100);
+            ListGroup.Enabled = false;
+            ListGroup.Visible = false;
+            toStart();
+        }
+
+        private void Vol1_tree_AfterSelect(object sender, TreeViewEventArgs e)
+        {
+
+        }
+
+        private void Hide1_chk_CheckedChanged(object sender, EventArgs e)
+        {
+            if (Hide_chk.Checked) { popTree(currentVol, true); }
+            else { popTree(currentVol, false); }
         }
     }
 }
