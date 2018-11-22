@@ -46,6 +46,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="GUData.cs" />
     <Compile Include="Main.cs">
       <SubType>Form</SubType>
     </Compile>

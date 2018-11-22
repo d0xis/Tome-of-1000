@@ -37,7 +37,21 @@
             this.Exit_lbl = new System.Windows.Forms.Label();
             this.Back_lbl = new System.Windows.Forms.Label();
             this.ListGroup = new System.Windows.Forms.GroupBox();
+            this.AvgLevelBox = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.PartyLevel3 = new System.Windows.Forms.TextBox();
+            this.PartyLevel2 = new System.Windows.Forms.TextBox();
+            this.PartyLevel1 = new System.Windows.Forms.TextBox();
+            this.PartyLabel = new System.Windows.Forms.Label();
+            this.Complete_Check = new System.Windows.Forms.CheckBox();
             this.InfoBox = new System.Windows.Forms.GroupBox();
+            this.LocLabel = new System.Windows.Forms.Label();
+            this.DescLabel = new System.Windows.Forms.Label();
+            this.InfoLabel3 = new System.Windows.Forms.Label();
+            this.InfoLabel2 = new System.Windows.Forms.Label();
+            this.DescBox = new System.Windows.Forms.RichTextBox();
+            this.Name_lbl = new System.Windows.Forms.Label();
+            this.InfoPicture = new System.Windows.Forms.PictureBox();
             this.Hide_chk = new System.Windows.Forms.CheckBox();
             this.aTree = new System.Windows.Forms.TreeView();
             ((System.ComponentModel.ISupportInitialize)(this.Vol1_pic)).BeginInit();
@@ -46,6 +60,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.Vol3_pic)).BeginInit();
             this.Start_group.SuspendLayout();
             this.ListGroup.SuspendLayout();
+            this.InfoBox.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.InfoPicture)).BeginInit();
             this.SuspendLayout();
             // 
             // Vol1_pic
@@ -141,28 +157,189 @@
             // 
             // ListGroup
             // 
+            this.ListGroup.Controls.Add(this.AvgLevelBox);
+            this.ListGroup.Controls.Add(this.label1);
+            this.ListGroup.Controls.Add(this.PartyLevel3);
+            this.ListGroup.Controls.Add(this.PartyLevel2);
+            this.ListGroup.Controls.Add(this.PartyLevel1);
+            this.ListGroup.Controls.Add(this.PartyLabel);
+            this.ListGroup.Controls.Add(this.Complete_Check);
             this.ListGroup.Controls.Add(this.InfoBox);
             this.ListGroup.Controls.Add(this.Hide_chk);
             this.ListGroup.Controls.Add(this.aTree);
             this.ListGroup.Controls.Add(this.Back_lbl);
-            this.ListGroup.Location = new System.Drawing.Point(0, -1000);
+            this.ListGroup.Location = new System.Drawing.Point(0, -10);
             this.ListGroup.Name = "ListGroup";
             this.ListGroup.Size = new System.Drawing.Size(1030, 609);
             this.ListGroup.TabIndex = 7;
             this.ListGroup.TabStop = false;
             this.ListGroup.Text = "groupBox1";
             // 
+            // AvgLevelBox
+            // 
+            this.AvgLevelBox.BackColor = System.Drawing.SystemColors.MenuText;
+            this.AvgLevelBox.Font = new System.Drawing.Font("Cooper Black", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.AvgLevelBox.ForeColor = System.Drawing.Color.Red;
+            this.AvgLevelBox.Location = new System.Drawing.Point(914, 15);
+            this.AvgLevelBox.Name = "AvgLevelBox";
+            this.AvgLevelBox.Size = new System.Drawing.Size(41, 23);
+            this.AvgLevelBox.TabIndex = 17;
+            this.AvgLevelBox.Text = "000";
+            this.AvgLevelBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("dotHack//FONT", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(735, 16);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(173, 16);
+            this.label1.TabIndex = 16;
+            this.label1.Text = "Averagle Party Level: ";
+            // 
+            // PartyLevel3
+            // 
+            this.PartyLevel3.Font = new System.Drawing.Font("dotHack//FONT", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.PartyLevel3.Location = new System.Drawing.Point(686, 18);
+            this.PartyLevel3.Name = "PartyLevel3";
+            this.PartyLevel3.Size = new System.Drawing.Size(29, 20);
+            this.PartyLevel3.TabIndex = 15;
+            this.PartyLevel3.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.PartyLevel3.TextChanged += new System.EventHandler(this.PartyLevel3_TextChanged);
+            // 
+            // PartyLevel2
+            // 
+            this.PartyLevel2.Font = new System.Drawing.Font("dotHack//FONT", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.PartyLevel2.Location = new System.Drawing.Point(651, 18);
+            this.PartyLevel2.Name = "PartyLevel2";
+            this.PartyLevel2.Size = new System.Drawing.Size(29, 20);
+            this.PartyLevel2.TabIndex = 14;
+            this.PartyLevel2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.PartyLevel2.TextChanged += new System.EventHandler(this.PartyLevel2_TextChanged);
+            // 
+            // PartyLevel1
+            // 
+            this.PartyLevel1.Font = new System.Drawing.Font("dotHack//FONT", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.PartyLevel1.Location = new System.Drawing.Point(616, 18);
+            this.PartyLevel1.Name = "PartyLevel1";
+            this.PartyLevel1.Size = new System.Drawing.Size(29, 20);
+            this.PartyLevel1.TabIndex = 13;
+            this.PartyLevel1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.PartyLevel1.TextChanged += new System.EventHandler(this.PartyLevel1_TextChanged);
+            // 
+            // PartyLabel
+            // 
+            this.PartyLabel.AutoSize = true;
+            this.PartyLabel.Font = new System.Drawing.Font("dotHack//FONT", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.PartyLabel.Location = new System.Drawing.Point(327, 19);
+            this.PartyLabel.Name = "PartyLabel";
+            this.PartyLabel.Size = new System.Drawing.Size(282, 13);
+            this.PartyLabel.TabIndex = 12;
+            this.PartyLabel.Text = "Enter the levels of your party members:";
+            // 
+            // Complete_Check
+            // 
+            this.Complete_Check.AutoSize = true;
+            this.Complete_Check.Font = new System.Drawing.Font("dotHack//FONT", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Complete_Check.ForeColor = System.Drawing.Color.Red;
+            this.Complete_Check.Location = new System.Drawing.Point(324, 549);
+            this.Complete_Check.Name = "Complete_Check";
+            this.Complete_Check.Size = new System.Drawing.Size(109, 22);
+            this.Complete_Check.TabIndex = 11;
+            this.Complete_Check.Text = "Complete";
+            this.Complete_Check.UseVisualStyleBackColor = true;
+            this.Complete_Check.CheckedChanged += new System.EventHandler(this.Complete_Check_CheckedChanged);
+            // 
             // InfoBox
             // 
             this.InfoBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(25)))), ((int)(((byte)(25)))));
+            this.InfoBox.Controls.Add(this.LocLabel);
+            this.InfoBox.Controls.Add(this.DescLabel);
+            this.InfoBox.Controls.Add(this.InfoLabel3);
+            this.InfoBox.Controls.Add(this.InfoLabel2);
+            this.InfoBox.Controls.Add(this.DescBox);
+            this.InfoBox.Controls.Add(this.Name_lbl);
+            this.InfoBox.Controls.Add(this.InfoPicture);
             this.InfoBox.Font = new System.Drawing.Font("Constantia", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.InfoBox.ForeColor = System.Drawing.Color.White;
             this.InfoBox.Location = new System.Drawing.Point(324, 40);
             this.InfoBox.Name = "InfoBox";
-            this.InfoBox.Size = new System.Drawing.Size(686, 496);
+            this.InfoBox.Size = new System.Drawing.Size(686, 503);
             this.InfoBox.TabIndex = 9;
             this.InfoBox.TabStop = false;
             this.InfoBox.Text = "Info";
+            // 
+            // LocLabel
+            // 
+            this.LocLabel.AutoSize = true;
+            this.LocLabel.Font = new System.Drawing.Font("Cooper Black", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LocLabel.Location = new System.Drawing.Point(6, 468);
+            this.LocLabel.Name = "LocLabel";
+            this.LocLabel.Size = new System.Drawing.Size(191, 21);
+            this.LocLabel.TabIndex = 7;
+            this.LocLabel.Text = "Known Locations: ";
+            // 
+            // DescLabel
+            // 
+            this.DescLabel.AutoSize = true;
+            this.DescLabel.Font = new System.Drawing.Font("Cooper Std Black", 22F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.DescLabel.Location = new System.Drawing.Point(6, 207);
+            this.DescLabel.Name = "DescLabel";
+            this.DescLabel.Size = new System.Drawing.Size(197, 37);
+            this.DescLabel.TabIndex = 6;
+            this.DescLabel.Text = "Description";
+            // 
+            // InfoLabel3
+            // 
+            this.InfoLabel3.AutoSize = true;
+            this.InfoLabel3.Font = new System.Drawing.Font("Courier New", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.InfoLabel3.Location = new System.Drawing.Point(6, 151);
+            this.InfoLabel3.Name = "InfoLabel3";
+            this.InfoLabel3.Size = new System.Drawing.Size(54, 21);
+            this.InfoLabel3.TabIndex = 5;
+            this.InfoLabel3.Text = "lbl3";
+            // 
+            // InfoLabel2
+            // 
+            this.InfoLabel2.AutoSize = true;
+            this.InfoLabel2.Font = new System.Drawing.Font("Courier New", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.InfoLabel2.Location = new System.Drawing.Point(6, 89);
+            this.InfoLabel2.Name = "InfoLabel2";
+            this.InfoLabel2.Size = new System.Drawing.Size(54, 21);
+            this.InfoLabel2.TabIndex = 4;
+            this.InfoLabel2.Text = "lbl2";
+            // 
+            // DescBox
+            // 
+            this.DescBox.AcceptsTab = true;
+            this.DescBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
+            this.DescBox.ForeColor = System.Drawing.SystemColors.Info;
+            this.DescBox.Location = new System.Drawing.Point(6, 250);
+            this.DescBox.Name = "DescBox";
+            this.DescBox.ReadOnly = true;
+            this.DescBox.Size = new System.Drawing.Size(674, 211);
+            this.DescBox.TabIndex = 3;
+            this.DescBox.Text = "This is a test of what the DescriptionBox will look like. That is... DOES look li" +
+    "ke... ;)";
+            // 
+            // Name_lbl
+            // 
+            this.Name_lbl.AutoSize = true;
+            this.Name_lbl.Font = new System.Drawing.Font("Cooper Std Black", 22F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Name_lbl.Location = new System.Drawing.Point(6, 29);
+            this.Name_lbl.Name = "Name_lbl";
+            this.Name_lbl.Size = new System.Drawing.Size(138, 37);
+            this.Name_lbl.TabIndex = 1;
+            this.Name_lbl.Text = "<name>";
+            // 
+            // InfoPicture
+            // 
+            this.InfoPicture.Location = new System.Drawing.Point(441, 20);
+            this.InfoPicture.Name = "InfoPicture";
+            this.InfoPicture.Size = new System.Drawing.Size(239, 224);
+            this.InfoPicture.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.InfoPicture.TabIndex = 0;
+            this.InfoPicture.TabStop = false;
             // 
             // Hide_chk
             // 
@@ -179,21 +356,21 @@
             // aTree
             // 
             this.aTree.BackColor = System.Drawing.SystemColors.MenuText;
-            this.aTree.Font = new System.Drawing.Font("Cooper Black", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.aTree.Font = new System.Drawing.Font("Courier New", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.aTree.ForeColor = System.Drawing.Color.Red;
             this.aTree.LineColor = System.Drawing.Color.Gray;
             this.aTree.Location = new System.Drawing.Point(13, 40);
             this.aTree.Name = "aTree";
             this.aTree.Size = new System.Drawing.Size(305, 531);
             this.aTree.TabIndex = 7;
-            this.aTree.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.Vol1_tree_AfterSelect);
+            this.aTree.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.aTree_AfterSelect);
             // 
             // Main_frm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 11F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.ClientSize = new System.Drawing.Size(1024, 418);
+            this.ClientSize = new System.Drawing.Size(1024, 580);
             this.ControlBox = false;
             this.Controls.Add(this.ListGroup);
             this.Controls.Add(this.Start_group);
@@ -213,6 +390,9 @@
             this.Start_group.PerformLayout();
             this.ListGroup.ResumeLayout(false);
             this.ListGroup.PerformLayout();
+            this.InfoBox.ResumeLayout(false);
+            this.InfoBox.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.InfoPicture)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -231,6 +411,20 @@
         private System.Windows.Forms.CheckBox Hide_chk;
         private System.Windows.Forms.TreeView aTree;
         private System.Windows.Forms.GroupBox InfoBox;
+        private System.Windows.Forms.PictureBox InfoPicture;
+        private System.Windows.Forms.Label Name_lbl;
+        private System.Windows.Forms.RichTextBox DescBox;
+        private System.Windows.Forms.Label DescLabel;
+        private System.Windows.Forms.Label InfoLabel3;
+        private System.Windows.Forms.Label InfoLabel2;
+        private System.Windows.Forms.CheckBox Complete_Check;
+        private System.Windows.Forms.Label LocLabel;
+        private System.Windows.Forms.Label PartyLabel;
+        private System.Windows.Forms.TextBox PartyLevel1;
+        private System.Windows.Forms.TextBox AvgLevelBox;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TextBox PartyLevel3;
+        private System.Windows.Forms.TextBox PartyLevel2;
     }
 }
 
