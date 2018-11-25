@@ -69,7 +69,10 @@ namespace ToOT
             vTree.Nodes.Add("Monster");
             vTree.Nodes.Add("Animal");
             vTree.Nodes.Add("Bike Part");
-            vTree.Nodes.Add("Key Word");
+            vTree.Nodes.Add("Keyword");
+            vTree.Nodes[4].Nodes.Add("1st");
+            vTree.Nodes[4].Nodes.Add("2nd");
+            vTree.Nodes[4].Nodes.Add("3rd");
             vTree.EndUpdate();
             //Items
             for (int i = 1; i < VolItems.GetLength(0); i++)
@@ -101,6 +104,25 @@ namespace ToOT
                     vTree.Nodes[2].Nodes.Add(Data.Animals[24, 1]);
                     break;
             }
+            //Key Words
+            string place = "";
+            for (int i = 1; i < VolWords.GetLength(0); i++)
+            {
+                place = VolWords[i, 2];
+                switch (place)
+                {
+                    case "1st":
+                        vTree.Nodes[4].Nodes[0].Nodes.Add(VolWords[i, 1]);
+                        break;
+                    case "2nd":
+                        vTree.Nodes[4].Nodes[1].Nodes.Add(VolWords[i, 1]);
+                        break;
+                    case "3rd":
+                        vTree.Nodes[4].Nodes[2].Nodes.Add(VolWords[i, 1]);
+                        break;
+                }
+            }
+
         }
 
         private void Vol1_pic_Click(object sender, EventArgs e)
@@ -433,9 +455,20 @@ namespace ToOT
 
         private void aTree_AfterSelect(object sender, TreeViewEventArgs e)
         {
-            if (aTree.SelectedNode.Level == 1)
+            System.Console.WriteLine(aTree.SelectedNode.Text + " @ " + aTree.SelectedNode.FullPath);
+            if(aTree.SelectedNode.Text != "1st" && aTree.SelectedNode.Text != "2nd" && aTree.SelectedNode.Text != "3rd")
             {
-                InfoSort(aTree.SelectedNode.FullPath.Replace('\\', '_').Replace(" ", ""));
+                if (aTree.SelectedNode.Level == 1)
+                {
+                    InfoSort(aTree.SelectedNode.FullPath.Replace('\\', '_').Replace(" ", ""));
+                }
+            }
+            else
+            {
+                if (aTree.SelectedNode.Level == 2)
+                {
+                    InfoSort(aTree.SelectedNode.FullPath.Replace('\\', '_').Replace(" ", ""));
+                }
             }
         }
     }

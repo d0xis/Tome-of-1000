@@ -15,6 +15,9 @@ namespace ToOT
         };
 
         public string[,] Vol1_KeyWords = { // {"ID", "Word", "Place", "Aquired" },
+        {"Keyword_1st_test1", "test1", "1st", "Aquired" },
+        {"Keyword_2nd_test2", "test2", "2nd", "Aquired" },
+        {"Keyword_3rd_test3", "test3", "3rd", "Aquired" },
         };
 
         public string[,] Vol1_BikeParts = { { "BikePart_ID", "No Parts", "", "There are no Bike Parts in Vol. 1 - Rebirth" }, { "BikePart_ID", "No Parts", "", "There are no Bike Parts in Vol. 1 - Rebirth" } };  //None in Vol. 1
