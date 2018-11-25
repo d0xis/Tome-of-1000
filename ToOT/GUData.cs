@@ -8,16 +8,58 @@ namespace ToOT
 {
     class GUData
     {
-        public string[,] Vol1_Items = { { "Unique_ID", "Type", "Name", "Aquired", "Description" },
+        public string[,] Vol1_Items = { //{ "Item1_ID", "Name", "Type", "Usage", "Aquired" },
         { "", "", "", "", "" } };
 
-        public string[,] Vol1_Monsters = { }; 
+        public string[,] Vol1_Monsters = { //{"ID", "Name", "Type", "Lvl", "HP", "Loc1", "Loc2", "Loc3" },
+        };
 
-        public string[,] Vol1_KeyWords = { }; 
+        public string[,] Vol1_KeyWords = { // {"ID", "Word", "Place", "Aquired" },
+        };
 
-        public string[] Vol1_BikeParts = { "Unique_ID", "No Parts", "", "There are no Bike Parts in Vol. 1 - Rebirth" };  //None in Vol. 1
+        public string[,] Vol1_BikeParts = { { "BikePart_ID", "No Parts", "", "There are no Bike Parts in Vol. 1 - Rebirth" }, { "BikePart_ID", "No Parts", "", "There are no Bike Parts in Vol. 1 - Rebirth" } };  //None in Vol. 1
 
 
+
+        public string[,] Vol2_Items = { //{ "Item1_ID", "Name", "Type", "Usage", "Aquired" },
+        { "", "", "", "", "" } };
+
+        public string[,] Vol2_Monsters = { //{"ID", "Name", "Type", "Lvl", "HP", "Loc1", "Loc2", "Loc3" },
+        };
+
+        public string[,] Vol2_KeyWords = { // {"ID", "Word", "Place", "Aquired" },
+        };
+
+        public string[,] Vol2_BikeParts = {  // {"ID", "Name", "Type", "Aquired" },
+        };
+
+
+
+        public string[,] Vol3_Items = { //{ "Item1_ID", "Name", "Type", "Usage", "Aquired" },
+        { "", "", "", "", "" } };
+
+        public string[,] Vol3_Monsters = { //{"ID", "Name", "Type", "Lvl", "HP", "Loc1", "Loc2", "Loc3" },
+        };
+
+        public string[,] Vol3_KeyWords = { // {"ID", "Word", "Place", "Aquired" },
+        };
+
+        public string[,] Vol3_BikeParts = {  // {"ID", "Name", "Type", "Aquired" },
+        };
+
+
+
+        public string[,] Vol4_Items = { //{ "Item1_ID", "Name", "Type", "Usage", "Aquired" },
+        { "", "", "", "", "" } };
+
+        public string[,] Vol4_Monsters = { //{"ID", "Name", "Type", "Lvl", "HP", "Loc1", "Loc2", "Loc3" },
+        };
+
+        public string[,] Vol4_KeyWords = { // {"ID", "Word", "Place", "Aquired" },
+        };
+
+        public string[,] Vol4_BikeParts = {  // {"ID", "Name", "Type", "Aquired" },
+        };
 
         public string[,] Animals = { { "Unique_ID", "Name", "Vol. 1 Effect", "Vol. 2 Effect", "Vol. 3 Effect", "Volume 4 effect?"  },
             { "Animal_GoldBird","Gold Bird","Turns all breakable objects into chests.","Turns all breakable objects into chests.","Turns all breakable objects into chests.", "Volume 4 effect?"  },

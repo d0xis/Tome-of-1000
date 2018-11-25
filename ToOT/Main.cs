@@ -27,6 +27,10 @@ namespace ToOT
         public string[] AnimalList;
         public string[] BikePartList;
         public string[] WordList;
+        public string[,] VolItems = { };
+        public string[,] VolMonsters = { };
+        public string[,] VolBikeParts = { };
+        public string[,] VolWords = { };
         GUData Data = new GUData();
 
         private void Main_frm_Load(object sender, EventArgs e)
@@ -58,25 +62,7 @@ namespace ToOT
 
         public void PopTree(string vol, Boolean hideComp)
         {
-            TreeView vTree = new TreeView();
-            switch (vol)
-            {
-                default:
-                    MessageBox.Show("ERROR: Incorect Volume!");
-                    break;
-                case "Vol1":
-                    vTree = aTree;
-                    break;
-                case "Vol2":
-                    vTree = aTree;
-                    break;
-                case "Vol3":
-                    vTree = aTree;
-                    break;
-                case "Vol4":
-                    vTree = aTree;
-                    break;
-            }
+            TreeView vTree = aTree;
             DataSet xmlDB = new DataSet();
             //Populate tree from DB
             vTree.BeginUpdate();
@@ -94,9 +80,9 @@ namespace ToOT
                 vTree.Nodes[0].Nodes.Add("");
             }
             //Monsters
-            for (int i = 1; i < Data.Vol1_Items.GetLength(0); i++)
+            for (int i = 1; i < Data.Vol1_Monsters.GetLength(0); i++)
             {
-                vTree.Nodes[1].Nodes.Add("");
+                vTree.Nodes[1].Nodes.Add(Data.Vol1_Monsters[i,2]);
             }
 
             //All Volumes
@@ -130,6 +116,10 @@ namespace ToOT
             LevelCap = 50;
             ToList();
             PopTree(currentVol, Hide_chk.Checked);
+            VolItems = Data.Vol1_Items;
+            VolMonsters = Data.Vol1_Monsters;
+            VolBikeParts = Data.Vol1_BikeParts;
+            VolWords = Data.Vol1_KeyWords;
         }
 
         private void Vol2_pic_Click(object sender, EventArgs e)
@@ -140,6 +130,10 @@ namespace ToOT
             LevelCap = 100;
             ToList();
             PopTree(currentVol, Hide_chk.Checked);
+            VolItems = Data.Vol2_Items;
+            VolMonsters = Data.Vol2_Monsters;
+            VolBikeParts = Data.Vol2_BikeParts;
+            VolWords = Data.Vol2_KeyWords;
         }
 
         private void Vol3_pic_Click(object sender, EventArgs e)
@@ -150,6 +144,10 @@ namespace ToOT
             LevelCap = 150;
             ToList();
             PopTree(currentVol, Hide_chk.Checked);
+            VolItems = Data.Vol3_Items;
+            VolMonsters = Data.Vol3_Monsters;
+            VolBikeParts = Data.Vol3_BikeParts;
+            VolWords = Data.Vol3_KeyWords;
         }
 
         private void Vol4_pic_Click(object sender, EventArgs e)
@@ -160,6 +158,10 @@ namespace ToOT
             LevelCap = 200;
             ToList();
             PopTree(currentVol, Hide_chk.Checked);
+            VolItems = Data.Vol4_Items;
+            VolMonsters = Data.Vol4_Monsters;
+            VolBikeParts = Data.Vol4_BikeParts;
+            VolWords = Data.Vol4_KeyWords;
         }
 
         private void Back1_lbl_Click(object sender, EventArgs e)
@@ -179,12 +181,28 @@ namespace ToOT
             else { PopTree(currentVol, false); }
         }
 
+        private void SetLocations(string[] sLocations)
+        {
+            LocationList.Items.Clear();
+            LocationList.Visible = true;
+            LocationLLabel.Visible = false;
+            if (sLocations[0] != " ") { LocationList.Items.Add(sLocations[0]); }
+            if (sLocations[1] != " ") { LocationList.Items.Add(sLocations[1]); }
+            if (sLocations[2] != " ") { LocationList.Items.Add(sLocations[2]); }
+            LocationList.SelectedIndex=0;
+        }
+
+        private void SetLocation(string sLevels)
+        {
+            LocationLLabel.Visible = true;
+            LocationList.Visible = false;
+            LocationLLabel.Text = sLevels;
+        }
+
         private void InfoSort(string iUID)
         {
-            System.Console.WriteLine("Sorting Info");
             //lookup UID
             string[] ID = iUID.Split('_');
-            System.Console.WriteLine(ID[0] + " " + ID[1]);
             string sName = "";
             string sLabel2 = "";
             string sLabel3 = "";
@@ -192,27 +210,42 @@ namespace ToOT
             string sDesc = "";
             string sPicLocation = "";
             bool sComp = false;
+            int cIndex = -1;
+            int aIndex = 0;
+            bool isID = false;
             switch (ID[0])
             {
                 default:
                     MessageBox.Show("ERROR: Type not found!");
                     break;
+                case "Item":
+                    cIndex = -1;
+                    aIndex = 0;
+                    isID = false;
+                    sDescLabel = "Usage";
+                    while (!isID)
+                    {
+                        if (iUID == VolItems[aIndex, 0])
+                        {
+                            isID = true;
+                            sName = VolItems[aIndex, 1];
+                            sDesc = VolItems[aIndex, 1 + VolNum];
+                        }
+                        else { aIndex++; }
+                    }
+                    break;
                 case "Animal":
-                    System.Console.WriteLine("Type is Animal");
+                    cIndex = -1;
+                    aIndex = 0;
+                    isID = false;
                     sDescLabel = "Effect";
-                    int cIndex = -1;
-                    int aIndex = 0;
-                    bool isID = false;
                     while(!isID)
                     {
                         if (iUID == Data.Animals[aIndex, 0])
                         {
-                            System.Console.WriteLine("Animal Index of: "+aIndex);
                             isID = true;
                             sName = Data.Animals[aIndex, 1];
-                            sDesc = Data.Animals[aIndex, 2 + VolNum];
-                            System.Console.WriteLine("Name: " + sName);
-                            System.Console.WriteLine("Description:" + sDesc);
+                            sDesc = Data.Animals[aIndex, 1 + VolNum];
                         }
                         else { aIndex++; }
                     }
@@ -263,14 +296,33 @@ namespace ToOT
                     }
                     string Found = Data.Animal_Chart[cIndex, PartyLast()];
                     if(Found == "N/a")
-                    { sLabel3 = "Animal can NOT be found with current party levels."; }
+                    { SetLocation("Animal can NOT be found with current party levels."); }
                     else
-                    { sLabel3 = "Can be found in areas with levels ending in " + Found + "."; }
+                    { SetLocation("Can be found in areas with levels ending in " + Found + "."); }
                     break;
-                case "monster":
+                case "Monster":
+                    cIndex = -1;
+                    aIndex = 0;
+                    isID = false;
+                    sDescLabel = "Description";
+                    while (!isID)
+                    {
+                        if (iUID == VolMonsters[aIndex, 0])
+                        {
+                            isID = true;
+                            sName = VolMonsters[aIndex, 1];
+                            sLabel2 = "Levels: "+ VolMonsters[aIndex, 3];
+                            sLabel3 = "HP:" + VolMonsters[aIndex, 4];
+                            sDesc = VolMonsters[aIndex, 5];
+                            string[] mLoc = { VolMonsters[aIndex, 6], VolMonsters[aIndex, 7], VolMonsters[aIndex, 8] };
+                            SetLocations(mLoc);
+                        }
+                        else
+                        {  aIndex++; }
+                    }
                     break;
             }
-            //lookup completed in userdata
+            //TODO:lookup completed in userdata, and check box if applicable
             FillInfo(iUID, sName, sLabel2, sLabel3, sDescLabel, sDesc, sPicLocation, sComp);
         }
 

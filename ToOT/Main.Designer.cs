@@ -54,6 +54,8 @@
             this.InfoPicture = new System.Windows.Forms.PictureBox();
             this.Hide_chk = new System.Windows.Forms.CheckBox();
             this.aTree = new System.Windows.Forms.TreeView();
+            this.LocationLLabel = new System.Windows.Forms.Label();
+            this.LocationList = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.Vol1_pic)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Vol2_pic)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Vol4_pic)).BeginInit();
@@ -253,6 +255,8 @@
             // InfoBox
             // 
             this.InfoBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(25)))), ((int)(((byte)(25)))));
+            this.InfoBox.Controls.Add(this.LocationList);
+            this.InfoBox.Controls.Add(this.LocationLLabel);
             this.InfoBox.Controls.Add(this.LocLabel);
             this.InfoBox.Controls.Add(this.DescLabel);
             this.InfoBox.Controls.Add(this.InfoLabel3);
@@ -365,6 +369,29 @@
             this.aTree.TabIndex = 7;
             this.aTree.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.aTree_AfterSelect);
             // 
+            // LocationLLabel
+            // 
+            this.LocationLLabel.AutoSize = true;
+            this.LocationLLabel.Font = new System.Drawing.Font("Constantia", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LocationLLabel.Location = new System.Drawing.Point(186, 470);
+            this.LocationLLabel.Name = "LocationLLabel";
+            this.LocationLLabel.Size = new System.Drawing.Size(77, 19);
+            this.LocationLLabel.TabIndex = 8;
+            this.LocationLLabel.Text = "sLocation";
+            this.LocationLLabel.Visible = false;
+            // 
+            // LocationList
+            // 
+            this.LocationList.BackColor = System.Drawing.SystemColors.MenuText;
+            this.LocationList.Font = new System.Drawing.Font("Constantia", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LocationList.ForeColor = System.Drawing.SystemColors.Info;
+            this.LocationList.FormattingEnabled = true;
+            this.LocationList.Location = new System.Drawing.Point(190, 467);
+            this.LocationList.Name = "LocationList";
+            this.LocationList.Size = new System.Drawing.Size(490, 27);
+            this.LocationList.TabIndex = 9;
+            this.LocationList.Visible = false;
+            // 
             // Main_frm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 11F);
@@ -425,6 +452,8 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox PartyLevel3;
         private System.Windows.Forms.TextBox PartyLevel2;
+        private System.Windows.Forms.Label LocationLLabel;
+        private System.Windows.Forms.ComboBox LocationList;
     }
 }
 
