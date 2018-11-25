@@ -13,12 +13,6 @@ namespace ToOT
 {
     public partial class Main_frm : Form
     {
-        public Main_frm()
-        {
-            InitializeComponent();
-        }
-
-        public string currentVol;
         public int VolNum = 0;
         public int LevelCap;
         public int UIID;
@@ -32,6 +26,11 @@ namespace ToOT
         public string[,] VolBikeParts = { };
         public string[,] VolWords = { };
         GUData Data = new GUData();
+
+        public Main_frm()
+        {
+            InitializeComponent();
+        }
 
         private void Main_frm_Load(object sender, EventArgs e)
         {
@@ -60,10 +59,9 @@ namespace ToOT
             FillInfo("", "", "", "", "", "", "", false);
         }
 
-        public void PopTree(string vol, Boolean hideComp)
+        public void PopTree(Boolean hideComp)
         {
             TreeView vTree = aTree;
-            DataSet xmlDB = new DataSet();
             //Populate tree from DB
             vTree.BeginUpdate();
             vTree.Nodes.Clear();
@@ -73,19 +71,16 @@ namespace ToOT
             vTree.Nodes.Add("Bike Part");
             vTree.Nodes.Add("Key Word");
             vTree.EndUpdate();
-            //Vol 1
             //Items
-            for (int i = 1; i < Data.Vol1_Items.GetLength(0); i++)
+            for (int i = 1; i < VolItems.GetLength(0); i++)
             {
                 vTree.Nodes[0].Nodes.Add("");
             }
             //Monsters
-            for (int i = 1; i < Data.Vol1_Monsters.GetLength(0); i++)
+            for (int i = 1; i < VolMonsters.GetLength(0); i++)
             {
-                vTree.Nodes[1].Nodes.Add(Data.Vol1_Monsters[i,2]);
+                vTree.Nodes[1].Nodes.Add(VolMonsters[i,2]);
             }
-
-            //All Volumes
             //Animals
             for (int i = 1; i < Data.Animals.GetLength(0) - 4; i++)
             {
@@ -111,11 +106,10 @@ namespace ToOT
         private void Vol1_pic_Click(object sender, EventArgs e)
         {
             //Vol. 1 Tome
-            currentVol = "Vol1";
             VolNum = 1;
             LevelCap = 50;
             ToList();
-            PopTree(currentVol, Hide_chk.Checked);
+            PopTree(Hide_chk.Checked);
             VolItems = Data.Vol1_Items;
             VolMonsters = Data.Vol1_Monsters;
             VolBikeParts = Data.Vol1_BikeParts;
@@ -125,11 +119,10 @@ namespace ToOT
         private void Vol2_pic_Click(object sender, EventArgs e)
         {
             //Vol. 2 Tome
-            currentVol = "Vol2";
             VolNum = 2;
             LevelCap = 100;
             ToList();
-            PopTree(currentVol, Hide_chk.Checked);
+            PopTree(Hide_chk.Checked);
             VolItems = Data.Vol2_Items;
             VolMonsters = Data.Vol2_Monsters;
             VolBikeParts = Data.Vol2_BikeParts;
@@ -139,11 +132,10 @@ namespace ToOT
         private void Vol3_pic_Click(object sender, EventArgs e)
         {
             //Vol. 3 Tome
-            currentVol = "Vol3";
             VolNum = 3;
             LevelCap = 150;
             ToList();
-            PopTree(currentVol, Hide_chk.Checked);
+            PopTree(Hide_chk.Checked);
             VolItems = Data.Vol3_Items;
             VolMonsters = Data.Vol3_Monsters;
             VolBikeParts = Data.Vol3_BikeParts;
@@ -153,11 +145,10 @@ namespace ToOT
         private void Vol4_pic_Click(object sender, EventArgs e)
         {
             //Vol. 4 Tome
-            currentVol = "Vol4";
             VolNum = 4;
             LevelCap = 200;
             ToList();
-            PopTree(currentVol, Hide_chk.Checked);
+            PopTree(Hide_chk.Checked);
             VolItems = Data.Vol4_Items;
             VolMonsters = Data.Vol4_Monsters;
             VolBikeParts = Data.Vol4_BikeParts;
@@ -169,7 +160,6 @@ namespace ToOT
             ListGroup.Location = new System.Drawing.Point(0, -100);
             ListGroup.Enabled = false;
             ListGroup.Visible = false;
-            currentVol = "";
             VolNum = 0;
             LevelCap = 0;
             ToStart();
@@ -177,8 +167,8 @@ namespace ToOT
 
         private void Hide1_chk_CheckedChanged(object sender, EventArgs e)
         {
-            if (Hide_chk.Checked) { PopTree(currentVol, true); }
-            else { PopTree(currentVol, false); }
+            if (Hide_chk.Checked) { PopTree(true); }
+            else { PopTree(false); }
         }
 
         private void SetLocations(string[] sLocations)
