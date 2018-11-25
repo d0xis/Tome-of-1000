@@ -51,16 +51,16 @@ namespace ToOT
 
 
 
-        public string[,] Vol4_Items = { //{ "Name", "Type", "Usage", "Aquired" },
+        public string[,] Vol4_Items = { //{ "Item", "Type", "Usage", "Aquired" },
         { "", "", "", "", "" } };
 
-        public string[,] Vol4_Monsters = { //{ "Name", "Type", "Lvl", "HP", "Loc1", "Loc2", "Loc3" },
+        public string[,] Vol4_Monsters = { //{ "Monster", "Type", "Lvl", "HP", "Loc1", "Loc2", "Loc3" },
         };
 
         public string[,] Vol4_KeyWords = { // { "Word", "Place", "Aquired" },
         };
 
-        public string[,] Vol4_BikeParts = {  // { "Name", "Type", "Aquired" },
+        public string[,] Vol4_BikeParts = {  // { "Part", "Type", "Aquired" },
         };
 
         public string[,] Animals = { //{ "Unique_ID", "Name", "Vol. 1 Effect", "Vol. 2 Effect", "Vol. 3 Effect", "Volume 4 effect?"  },
@@ -84,9 +84,9 @@ namespace ToOT
             { "Two-Tailed Fox","Steals 5% of the kicker's GP","Steals 5% of the kicker's GP","Steals 5% of the kicker's GP", "Volume 4 effect?"  },
             { "Malice Cat","Reduces the party's max HP and SP by 50% for one battle.","Reduces the party's max HP and SP by 50% for one battle.","Reduces the party's max HP and SP by 50% for one battle.", "Volume 4 effect?"  },
             { "Dark Goat","Reduces the party's max HP and SP by 50% for one battle.","Reduces the party's max HP and SP by 50% for one battle.","Reduces the party's max HP and SP by 50% for one battle.", "Volume 4 effect?"  },
-            { "Black Sleipnir","Kick it to clear the Animal Mania quest.","N/A","N/A", "Volume 4 effect?"  },
-            { "White Malice Cat","N/A","Kick it to clear The Cat Smiles Silently quest.","N/A", "Volume 4 effect?"  },
-            { "Silvermane Kudan","N/A","N/A","Gives the kicker a prophecy.", "Volume 4 effect?"  },
+            { "Black Sleipnir","Kick it to clear the Animal Mania quest.","N/A","N/A", "N/A"  },
+            { "White Malice Cat","N/A","Kick it to clear The Cat Smiles Silently quest.","N/A", "N/A"  },
+            { "Silvermane Kudan","N/A","N/A","Gives the kicker a prophecy.", "N/A"  },
             { "Special","N/A","N/A","N/A", "Volume 4 effect?" }
         };
 

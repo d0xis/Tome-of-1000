@@ -1,12 +1,6 @@
 ﻿using System;
-using System.IO;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace ToOT
@@ -234,9 +228,6 @@ namespace ToOT
             bool isID = false;
             switch (iType)
             {
-                default:
-                    MessageBox.Show("ERROR: Type not found!");
-                    break;
                 case "Item":
                     cIndex = -1;
                     aIndex = 0;
@@ -313,7 +304,6 @@ namespace ToOT
                             cIndex = 9;
                             break;
                     }
-                    Console.WriteLine("Animal chart index: "+cIndex);
                     string Found = Data.Animal_Chart[cIndex, PartyLast()];
                     if(Found == "N/a")
                     { SetLocation("Animal can NOT be found with current party levels."); }
@@ -463,10 +453,8 @@ namespace ToOT
 
         private void aTree_AfterSelect(object sender, TreeViewEventArgs e)
         {
-            Console.WriteLine(aTree.SelectedNode.Text + " @ " + aTree.SelectedNode.FullPath);
             TreeNode iType = aTree.SelectedNode;
-            while (iType.Parent != null)
-            { iType = iType.Parent; }
+            while (iType.Parent != null) { iType = iType.Parent; }
             if (aTree.SelectedNode.Text != "")
             {
                 InfoSort(aTree.SelectedNode.Text, iType.Text);
