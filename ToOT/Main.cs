@@ -41,9 +41,9 @@ namespace ToOT
         {
             Start_group.Visible = false;
             Start_group.Enabled = false;
-            Start_group.Location = new System.Drawing.Point(0, -1000);
-            this.Size = new System.Drawing.Size(1040, 610);
-            ListGroup.Location = new System.Drawing.Point(0, -10);
+            Start_group.Location = new Point(0, -1000);
+            this.Size = new Size(1040, 610);
+            ListGroup.Location = new Point(0, -10);
             ListGroup.Enabled = true;
             ListGroup.Visible = true;
         }
@@ -51,12 +51,12 @@ namespace ToOT
         {
             ListGroup.Enabled = false;
             ListGroup.Visible = false;
-            ListGroup.Location = new System.Drawing.Point(0, -1000);
-            this.Size = new System.Drawing.Size(1040, 365);
-            Start_group.Location = new System.Drawing.Point(0, -10);
+            ListGroup.Location = new Point(0, -1000);
+            this.Size = new Size(1040, 365);
+            Start_group.Location = new Point(0, -10);
             Start_group.Enabled = true;
             Start_group.Visible = true;
-            FillInfo("", "", "", "", "", "", "", false);
+            FillInfo("", "", "", "", "", "", false);
         }
 
         public void PopTree(Boolean hideComp)
@@ -69,6 +69,13 @@ namespace ToOT
             vTree.Nodes.Add("Monster");
             vTree.Nodes.Add("Animal");
             vTree.Nodes.Add("Bike Part");
+            if(VolNum == 1)
+            {
+                vTree.Nodes[3].Nodes.Add("Engine");
+                vTree.Nodes[3].Nodes.Add("Cowl");
+                vTree.Nodes[3].Nodes.Add("Muffler");
+                vTree.Nodes[3].Nodes.Add("Tires");
+            }
             vTree.Nodes.Add("Keyword");
             vTree.Nodes[4].Nodes.Add("1st");
             vTree.Nodes[4].Nodes.Add("2nd");
@@ -87,7 +94,7 @@ namespace ToOT
             //Animals
             for (int i = 1; i < Data.Animals.GetLength(0) - 4; i++)
             {
-                vTree.Nodes[2].Nodes.Add(Data.Animals[i,1]);
+                vTree.Nodes[2].Nodes.Add(Data.Animals[i,0]);
             }
             switch (VolNum)
             {
@@ -104,7 +111,7 @@ namespace ToOT
                     vTree.Nodes[2].Nodes.Add(Data.Animals[24, 1]);
                     break;
             }
-            //Key Words
+            //Keywords
             string place = "";
             for (int i = 1; i < VolWords.GetLength(0); i++)
             {
@@ -122,6 +129,7 @@ namespace ToOT
                         break;
                 }
             }
+            //Bike Parts
 
         }
 
@@ -134,7 +142,7 @@ namespace ToOT
             PopTree(Hide_chk.Checked);
             VolItems = Data.Vol1_Items;
             VolMonsters = Data.Vol1_Monsters;
-            VolBikeParts = Data.Vol1_BikeParts;
+            VolBikeParts = null;
             VolWords = Data.Vol1_KeyWords;
         }
 
@@ -179,7 +187,7 @@ namespace ToOT
 
         private void Back1_lbl_Click(object sender, EventArgs e)
         {
-            ListGroup.Location = new System.Drawing.Point(0, -100);
+            ListGroup.Location = new Point(0, -100);
             ListGroup.Enabled = false;
             ListGroup.Visible = false;
             VolNum = 0;
@@ -211,11 +219,10 @@ namespace ToOT
             LocationLLabel.Text = sLevels;
         }
 
-        private void InfoSort(string iUID)
+        private void InfoSort(string iName, string iType)
         {
-            //lookup UID
-            string[] ID = iUID.Split('_');
-            string sName = "";
+            //lookup Name
+            string sName = iName;
             string sLabel2 = "";
             string sLabel3 = "";
             string sDescLabel = "";
@@ -225,7 +232,7 @@ namespace ToOT
             int cIndex = -1;
             int aIndex = 0;
             bool isID = false;
-            switch (ID[0])
+            switch (iType)
             {
                 default:
                     MessageBox.Show("ERROR: Type not found!");
@@ -237,7 +244,7 @@ namespace ToOT
                     sDescLabel = "Usage";
                     while (!isID)
                     {
-                        if (iUID == VolItems[aIndex, 0])
+                        if (iName == VolItems[aIndex, 0])
                         {
                             isID = true;
                             sName = VolItems[aIndex, 1];
@@ -253,11 +260,11 @@ namespace ToOT
                     sDescLabel = "Effect";
                     while(!isID)
                     {
-                        if (iUID == Data.Animals[aIndex, 0])
+                        if (iName == Data.Animals[aIndex, 0])
                         {
                             isID = true;
-                            sName = Data.Animals[aIndex, 1];
-                            sDesc = Data.Animals[aIndex, 1 + VolNum];
+                            sName = Data.Animals[aIndex, 0];
+                            sDesc = Data.Animals[aIndex, 0 + VolNum];
                         }
                         else { aIndex++; }
                     }
@@ -306,6 +313,7 @@ namespace ToOT
                             cIndex = 9;
                             break;
                     }
+                    Console.WriteLine("Animal chart index: "+cIndex);
                     string Found = Data.Animal_Chart[cIndex, PartyLast()];
                     if(Found == "N/a")
                     { SetLocation("Animal can NOT be found with current party levels."); }
@@ -319,7 +327,7 @@ namespace ToOT
                     sDescLabel = "Description";
                     while (!isID)
                     {
-                        if (iUID == VolMonsters[aIndex, 0])
+                        if (iName == VolMonsters[aIndex, 0])
                         {
                             isID = true;
                             sName = VolMonsters[aIndex, 1];
@@ -335,10 +343,10 @@ namespace ToOT
                     break;
             }
             //TODO:lookup completed in userdata, and check box if applicable
-            FillInfo(iUID, sName, sLabel2, sLabel3, sDescLabel, sDesc, sPicLocation, sComp);
+            FillInfo(sName, sLabel2, sLabel3, sDescLabel, sDesc, sPicLocation, sComp);
         }
 
-        private void FillInfo(string iUID, string iName, string iLabel2, string iLabel3, string iDescLabel, string iDesc, string iPicLocation, bool iComp)
+        private void FillInfo(string iName, string iLabel2, string iLabel3, string iDescLabel, string iDesc, string iPicLocation, bool iComp)
         {
             //fill infobox with provided strings
             Name_lbl.Text = iName;
@@ -455,20 +463,13 @@ namespace ToOT
 
         private void aTree_AfterSelect(object sender, TreeViewEventArgs e)
         {
-            System.Console.WriteLine(aTree.SelectedNode.Text + " @ " + aTree.SelectedNode.FullPath);
-            if(aTree.SelectedNode.Text != "1st" && aTree.SelectedNode.Text != "2nd" && aTree.SelectedNode.Text != "3rd")
+            Console.WriteLine(aTree.SelectedNode.Text + " @ " + aTree.SelectedNode.FullPath);
+            TreeNode iType = aTree.SelectedNode;
+            while (iType.Parent != null)
+            { iType = iType.Parent; }
+            if (aTree.SelectedNode.Text != "")
             {
-                if (aTree.SelectedNode.Level == 1)
-                {
-                    InfoSort(aTree.SelectedNode.FullPath.Replace('\\', '_').Replace(" ", ""));
-                }
-            }
-            else
-            {
-                if (aTree.SelectedNode.Level == 2)
-                {
-                    InfoSort(aTree.SelectedNode.FullPath.Replace('\\', '_').Replace(" ", ""));
-                }
+                InfoSort(aTree.SelectedNode.Text, iType.Text);
             }
         }
     }
