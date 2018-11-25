@@ -14,10 +14,10 @@ namespace ToOT
         { "Item3", "Type3", "Usage3", "Aquired3" }
         };
 
-        public string[,] Vol1_Monsters = { //{ "Name", "Type", "Lvl", "HP", "Loc1", "Loc2", "Loc3" },
-        { "Monster1", "Type2", "Lvl1", "HP1", "Loc1", "Loc2", "Loc3" },
-        { "Monster2", "Type2", "Lvl2", "HP2", "Loc1", "Loc2", "Loc3" },
-        { "Monster3", "Type3", "Lvl3", "HP3", "Loc1", "Loc2", "Loc3" }
+        public string[,] Vol1_Monsters = { //{ "Name", "Type", "Lvl", "HP", "Description", Locations... },
+        { "Monster1", "Type2", "Lvl1", "HP1", "DescriptionA", "Loc1", "", "", "", "", "" },
+        { "Monster2", "Type2", "Lvl2", "HP2", "DescriptionB", "Loc1", "Loc2", "Loc3", "", "", "" },
+        { "Monster3", "Type3", "Lvl3", "HP3", "DescriptionC", "Loc1", "Loc2", "Loc3", "Loc4", "Loc5", "Loc6" }
         };
 
         public string[,] Vol1_KeyWords = { // { "Word", "Place", "Aquired" },
@@ -42,6 +42,14 @@ namespace ToOT
         };
 
         public string[,] Vol2_BikeParts = {  // { "Name", "Type", "Aquired" },
+        { "Part1", "Engine", "Aquired" },
+        { "Part2", "Cowl", "Aquired" },
+        { "Part3", "Muffler", "Aquired" },
+        { "Part4", "Tires", "Aquired" },
+        { "Part5", "Engine", "Aquired" },
+        { "Part6", "Cowl", "Aquired" },
+        { "Part7", "Muffler", "Aquired" },
+        { "Part8", "Tires", "Aquired" }
         };
 
 

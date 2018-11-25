@@ -2,6 +2,7 @@
 using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
+using System.Collections.Generic;
 
 namespace ToOT
 {
@@ -119,6 +120,14 @@ namespace ToOT
                 }
             }
             //Bike Parts
+            string part = "";
+            if (VolNum != 1)
+            {
+                for (int i = 0; i < VolBikeParts.GetLength(0); i++)
+                {
+                    part = VolBikeParts[i, 1];
+                }
+            }
 
         }
 
@@ -127,12 +136,12 @@ namespace ToOT
             //Vol. 1 Tome
             VolNum = 1;
             LevelCap = 50;
-            ToList();
             VolItems = Data.Vol1_Items;
             VolMonsters = Data.Vol1_Monsters;
             VolBikeParts = null;
             VolWords = Data.Vol1_KeyWords;
             PopTree(Hide_chk.Checked);
+            ToList();
         }
 
         private void Vol2_pic_Click(object sender, EventArgs e)
@@ -140,12 +149,12 @@ namespace ToOT
             //Vol. 2 Tome
             VolNum = 2;
             LevelCap = 100;
-            ToList();
             VolItems = Data.Vol2_Items;
             VolMonsters = Data.Vol2_Monsters;
             VolBikeParts = Data.Vol2_BikeParts;
             VolWords = Data.Vol2_KeyWords;
             PopTree(Hide_chk.Checked);
+            ToList();
         }
 
         private void Vol3_pic_Click(object sender, EventArgs e)
@@ -153,12 +162,12 @@ namespace ToOT
             //Vol. 3 Tome
             VolNum = 3;
             LevelCap = 150;
-            ToList();
             VolItems = Data.Vol3_Items;
             VolMonsters = Data.Vol3_Monsters;
             VolBikeParts = Data.Vol3_BikeParts;
             VolWords = Data.Vol3_KeyWords;
             PopTree(Hide_chk.Checked);
+            ToList();
         }
 
         private void Vol4_pic_Click(object sender, EventArgs e)
@@ -166,16 +175,17 @@ namespace ToOT
             //Vol. 4 Tome
             VolNum = 4;
             LevelCap = 200;
-            ToList();
             VolItems = Data.Vol4_Items;
             VolMonsters = Data.Vol4_Monsters;
             VolBikeParts = Data.Vol4_BikeParts;
             VolWords = Data.Vol4_KeyWords;
             PopTree(Hide_chk.Checked);
+            ToList();
         }
 
         private void Back1_lbl_Click(object sender, EventArgs e)
         {
+            //Back to Volume Selection
             ListGroup.Location = new Point(0, -100);
             ListGroup.Enabled = false;
             ListGroup.Visible = false;
@@ -195,9 +205,10 @@ namespace ToOT
             LocationList.Items.Clear();
             LocationList.Visible = true;
             LocationLLabel.Visible = false;
-            if (sLocations[0] != " ") { LocationList.Items.Add(sLocations[0]); }
-            if (sLocations[1] != " ") { LocationList.Items.Add(sLocations[1]); }
-            if (sLocations[2] != " ") { LocationList.Items.Add(sLocations[2]); }
+            for(int l=0; l < sLocations.GetLength(0); l++)
+            {
+                LocationList.Items.Add(sLocations[l]);
+            }
             LocationList.SelectedIndex=0;
         }
 
@@ -303,7 +314,7 @@ namespace ToOT
                     else
                     { SetLocation("Can be found in areas with levels ending in " + Found + "."); }
                     break;
-                case "Monster": //{ "Name", "Type", "Lvl", "HP", "Loc1", "Loc2", "Loc3" },
+                case "Monster": //{ "Name", "Type", "Lvl", "HP", "Description", Locations... },
                     cIndex = -1;
                     aIndex = 0;
                     isID = false;
@@ -316,15 +327,22 @@ namespace ToOT
                             sName = iName+" - "+ VolMonsters[aIndex,1];
                             sLabel2 = "Levels: "+ VolMonsters[aIndex, 2];
                             sLabel3 = "HP:" + VolMonsters[aIndex, 3];
-                            sDesc = VolMonsters[aIndex, 5];
-                            string[] mLoc = { VolMonsters[aIndex, 4], VolMonsters[aIndex, 5], VolMonsters[aIndex, 6] };
-                            SetLocations(mLoc);
+                            sDesc = VolMonsters[aIndex, 4];
+                            List<string> mLoc = new List<string>();
+                            for (int m = 5; m <= 10; m++)
+                            {
+                                if (VolMonsters[aIndex, m] != "")
+                                {
+                                    mLoc.Add(VolMonsters[aIndex, m]);
+                                }
+                            }
+                            SetLocations(mLoc.ToArray());
                         }
                         else
                         {  aIndex++; }
                     }
                     break;
-                case "Bike Parts":   // { "Part", "Type", "Aquired" },
+                case "Bike Part":   // { "Part", "Type", "Aquired" },
                     if (VolNum != 1)
                     {
                         cIndex = -1;
@@ -364,7 +382,7 @@ namespace ToOT
                     }
                     break;
             }
-            //TODO:lookup completed in userdata, and check box if applicable
+            //TODO: Lookup in userdata, and check box if applicable
             FillInfo(sName, sLabel2, sLabel3, sDescLabel, sDesc, sPicLocation, sComp);
         }
 
@@ -383,18 +401,14 @@ namespace ToOT
         private void Complete_Check_CheckedChanged(object sender, EventArgs e)
         {
             //Mark item as complete
-            if (Complete_Check.Checked)
-            {
-                Complete_Check.ForeColor = Color.Lime;
-            }
-            else
-            {
-                Complete_Check.ForeColor = Color.Red;
-            }
+            if (Complete_Check.Checked) { Complete_Check.ForeColor = Color.Lime; }
+            else { Complete_Check.ForeColor = Color.Red; }
+            //TODO: Save to userdata
         }
 
         private double AvgParty()
         {
+            //Find average of current party members levels
             double[] PartyLevel = { 0, 0, 0 };
             string PartySize = "";
             int PL1, PL2, PL3;
@@ -474,13 +488,9 @@ namespace ToOT
 
         private int PartyLast()
         {
+            //Find LAST digit of average party level
             string PartNum = AvgParty().ToString();
             return Int32.Parse(PartNum.Remove(0, PartNum.Length - 1));
-        }
-        
-        private void Exit_lbl_Click(object sender, EventArgs e)
-        {
-            Application.Exit();
         }
 
         private void aTree_AfterSelect(object sender, TreeViewEventArgs e)
@@ -488,6 +498,11 @@ namespace ToOT
             TreeNode iType = aTree.SelectedNode;
             while (iType.Parent != null) { iType = iType.Parent; }
             if (aTree.SelectedNode.Nodes.Count < 1) { InfoSort(aTree.SelectedNode.Text, iType.Text); }
+        }
+        
+        private void Exit_lbl_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
         }
     }
 }
