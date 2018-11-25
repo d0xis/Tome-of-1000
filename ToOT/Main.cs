@@ -9,12 +9,6 @@ namespace ToOT
     {
         public int VolNum = 0;
         public int LevelCap;
-        public int UIID;
-        public string[] ItemList;
-        public string[] MonsterList;
-        public string[] AnimalList;
-        public string[] BikePartList;
-        public string[] WordList;
         public string[,] VolItems = { };
         public string[,] VolMonsters = { };
         public string[,] VolBikeParts = { };
@@ -63,30 +57,31 @@ namespace ToOT
             vTree.Nodes.Add("Monster");
             vTree.Nodes.Add("Animal");
             vTree.Nodes.Add("Bike Part");
-            if(VolNum == 1)
+            if (VolNum != 1)
             {
                 vTree.Nodes[3].Nodes.Add("Engine");
                 vTree.Nodes[3].Nodes.Add("Cowl");
                 vTree.Nodes[3].Nodes.Add("Muffler");
                 vTree.Nodes[3].Nodes.Add("Tires");
             }
+            else { vTree.Nodes[3].Nodes.Add("None"); }
             vTree.Nodes.Add("Keyword");
             vTree.Nodes[4].Nodes.Add("1st");
             vTree.Nodes[4].Nodes.Add("2nd");
             vTree.Nodes[4].Nodes.Add("3rd");
             vTree.EndUpdate();
             //Items
-            for (int i = 1; i < VolItems.GetLength(0); i++)
+            for (int i = 0; i < VolItems.GetLength(0); i++)
             {
-                vTree.Nodes[0].Nodes.Add("");
+                vTree.Nodes[0].Nodes.Add(VolItems[i,0]);
             }
             //Monsters
-            for (int i = 1; i < VolMonsters.GetLength(0); i++)
+            for (int i = 0; i < VolMonsters.GetLength(0); i++)
             {
-                vTree.Nodes[1].Nodes.Add(VolMonsters[i,2]);
+                vTree.Nodes[1].Nodes.Add(VolMonsters[i,0]);
             }
             //Animals
-            for (int i = 1; i < Data.Animals.GetLength(0) - 4; i++)
+            for (int i = 0; i < Data.Animals.GetLength(0) - 4; i++)
             {
                 vTree.Nodes[2].Nodes.Add(Data.Animals[i,0]);
             }
@@ -107,19 +102,19 @@ namespace ToOT
             }
             //Keywords
             string place = "";
-            for (int i = 1; i < VolWords.GetLength(0); i++)
+            for (int i = 0; i < VolWords.GetLength(0); i++)
             {
-                place = VolWords[i, 2];
+                place = VolWords[i, 1];
                 switch (place)
                 {
                     case "1st":
-                        vTree.Nodes[4].Nodes[0].Nodes.Add(VolWords[i, 1]);
+                        vTree.Nodes[4].Nodes[0].Nodes.Add(VolWords[i, 0]);
                         break;
                     case "2nd":
-                        vTree.Nodes[4].Nodes[1].Nodes.Add(VolWords[i, 1]);
+                        vTree.Nodes[4].Nodes[1].Nodes.Add(VolWords[i, 0]);
                         break;
                     case "3rd":
-                        vTree.Nodes[4].Nodes[2].Nodes.Add(VolWords[i, 1]);
+                        vTree.Nodes[4].Nodes[2].Nodes.Add(VolWords[i, 0]);
                         break;
                 }
             }
@@ -133,11 +128,11 @@ namespace ToOT
             VolNum = 1;
             LevelCap = 50;
             ToList();
-            PopTree(Hide_chk.Checked);
             VolItems = Data.Vol1_Items;
             VolMonsters = Data.Vol1_Monsters;
             VolBikeParts = null;
             VolWords = Data.Vol1_KeyWords;
+            PopTree(Hide_chk.Checked);
         }
 
         private void Vol2_pic_Click(object sender, EventArgs e)
@@ -146,11 +141,11 @@ namespace ToOT
             VolNum = 2;
             LevelCap = 100;
             ToList();
-            PopTree(Hide_chk.Checked);
             VolItems = Data.Vol2_Items;
             VolMonsters = Data.Vol2_Monsters;
             VolBikeParts = Data.Vol2_BikeParts;
             VolWords = Data.Vol2_KeyWords;
+            PopTree(Hide_chk.Checked);
         }
 
         private void Vol3_pic_Click(object sender, EventArgs e)
@@ -159,11 +154,11 @@ namespace ToOT
             VolNum = 3;
             LevelCap = 150;
             ToList();
-            PopTree(Hide_chk.Checked);
             VolItems = Data.Vol3_Items;
             VolMonsters = Data.Vol3_Monsters;
             VolBikeParts = Data.Vol3_BikeParts;
             VolWords = Data.Vol3_KeyWords;
+            PopTree(Hide_chk.Checked);
         }
 
         private void Vol4_pic_Click(object sender, EventArgs e)
@@ -172,11 +167,11 @@ namespace ToOT
             VolNum = 4;
             LevelCap = 200;
             ToList();
-            PopTree(Hide_chk.Checked);
             VolItems = Data.Vol4_Items;
             VolMonsters = Data.Vol4_Monsters;
             VolBikeParts = Data.Vol4_BikeParts;
             VolWords = Data.Vol4_KeyWords;
+            PopTree(Hide_chk.Checked);
         }
 
         private void Back1_lbl_Click(object sender, EventArgs e)
@@ -228,7 +223,7 @@ namespace ToOT
             bool isID = false;
             switch (iType)
             {
-                case "Item":
+                case "Item": //{ "Name", "Type", "Usage", "Aquired" },
                     cIndex = -1;
                     aIndex = 0;
                     isID = false;
@@ -238,13 +233,12 @@ namespace ToOT
                         if (iName == VolItems[aIndex, 0])
                         {
                             isID = true;
-                            sName = VolItems[aIndex, 1];
                             sDesc = VolItems[aIndex, 1 + VolNum];
                         }
                         else { aIndex++; }
                     }
                     break;
-                case "Animal":
+                case "Animal": //{ "Unique_ID", "Name", "Vol. 1 Effect", "Vol. 2 Effect", "Vol. 3 Effect", "Volume 4 effect?"  },
                     cIndex = -1;
                     aIndex = 0;
                     isID = false;
@@ -254,7 +248,6 @@ namespace ToOT
                         if (iName == Data.Animals[aIndex, 0])
                         {
                             isID = true;
-                            sName = Data.Animals[aIndex, 0];
                             sDesc = Data.Animals[aIndex, 0 + VolNum];
                         }
                         else { aIndex++; }
@@ -310,7 +303,7 @@ namespace ToOT
                     else
                     { SetLocation("Can be found in areas with levels ending in " + Found + "."); }
                     break;
-                case "Monster":
+                case "Monster": //{ "Name", "Type", "Lvl", "HP", "Loc1", "Loc2", "Loc3" },
                     cIndex = -1;
                     aIndex = 0;
                     isID = false;
@@ -320,15 +313,54 @@ namespace ToOT
                         if (iName == VolMonsters[aIndex, 0])
                         {
                             isID = true;
-                            sName = VolMonsters[aIndex, 1];
-                            sLabel2 = "Levels: "+ VolMonsters[aIndex, 3];
-                            sLabel3 = "HP:" + VolMonsters[aIndex, 4];
+                            sName = iName+" - "+ VolMonsters[aIndex,1];
+                            sLabel2 = "Levels: "+ VolMonsters[aIndex, 2];
+                            sLabel3 = "HP:" + VolMonsters[aIndex, 3];
                             sDesc = VolMonsters[aIndex, 5];
-                            string[] mLoc = { VolMonsters[aIndex, 6], VolMonsters[aIndex, 7], VolMonsters[aIndex, 8] };
+                            string[] mLoc = { VolMonsters[aIndex, 4], VolMonsters[aIndex, 5], VolMonsters[aIndex, 6] };
                             SetLocations(mLoc);
                         }
                         else
                         {  aIndex++; }
+                    }
+                    break;
+                case "Bike Parts":   // { "Part", "Type", "Aquired" },
+                    if (VolNum != 1)
+                    {
+                        cIndex = -1;
+                        aIndex = 0;
+                        isID = false;
+                        sDescLabel = "Aquired by";
+                        while (!isID)
+                        {
+                            if (iName == VolBikeParts[aIndex, 0])
+                            {
+                                isID = true;
+                                sLabel2 = VolBikeParts[aIndex, 1];
+                                sDesc = VolBikeParts[aIndex, 2];
+                            }
+                            else
+                            { aIndex++; }
+                        }
+
+                    }
+                    else { sLabel2 = "There are NO bike parts in Vol. 1"; }
+                    break;
+                case "Keyword": // { "Word", "Place", "Aquired" },
+                    cIndex = -1;
+                    aIndex = 0;
+                    isID = false;
+                    sDescLabel = "Aquired by";
+                    while (!isID)
+                    {
+                        if (iName == VolWords[aIndex, 0])
+                        {
+                            isID = true;
+                            sLabel2 = VolWords[aIndex, 1] + " word";
+                            sDesc = VolWords[aIndex, 2];
+                        }
+                        else
+                        { aIndex++; }
                     }
                     break;
             }
@@ -455,10 +487,7 @@ namespace ToOT
         {
             TreeNode iType = aTree.SelectedNode;
             while (iType.Parent != null) { iType = iType.Parent; }
-            if (aTree.SelectedNode.Text != "")
-            {
-                InfoSort(aTree.SelectedNode.Text, iType.Text);
-            }
+            if (aTree.SelectedNode.Nodes.Count < 1) { InfoSort(aTree.SelectedNode.Text, iType.Text); }
         }
     }
 }

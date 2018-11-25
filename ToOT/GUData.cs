@@ -9,22 +9,31 @@ namespace ToOT
     class GUData
     {
         public string[,] Vol1_Items = { //{ "Name", "Type", "Usage", "Aquired" },
-        { "", "", "", "", "" } };
+        { "Item1", "Type1", "Usage1", "Aquired1" },
+        { "Item2", "Type2", "Usage2", "Aquired2" },
+        { "Item3", "Type3", "Usage3", "Aquired3" }
+        };
 
         public string[,] Vol1_Monsters = { //{ "Name", "Type", "Lvl", "HP", "Loc1", "Loc2", "Loc3" },
+        { "Monster1", "Type2", "Lvl1", "HP1", "Loc1", "Loc2", "Loc3" },
+        { "Monster2", "Type2", "Lvl2", "HP2", "Loc1", "Loc2", "Loc3" },
+        { "Monster3", "Type3", "Lvl3", "HP3", "Loc1", "Loc2", "Loc3" }
         };
 
         public string[,] Vol1_KeyWords = { // { "Word", "Place", "Aquired" },
         { "test1", "1st", "Aquired" },
         { "test2", "2nd", "Aquired" },
         { "test3", "3rd", "Aquired" },
+        { "test12", "1st", "Aquired" },
+        { "test22", "2nd", "Aquired" },
+        { "test32", "3rd", "Aquired" }
         };
 
         //No Bike Parts in Vol. 1
 
 
         public string[,] Vol2_Items = { //{ "Name", "Type", "Usage", "Aquired" },
-        { "", "", "", "", "" } };
+        };
 
         public string[,] Vol2_Monsters = { //{ "Name", "Type", "Lvl", "HP", "Loc1", "Loc2", "Loc3" },
         };
@@ -38,7 +47,8 @@ namespace ToOT
 
 
         public string[,] Vol3_Items = { //{ "Name", "Type", "Usage", "Aquired" },
-        { "", "", "", "", "" } };
+        { "", "", "", "" }
+        };
 
         public string[,] Vol3_Monsters = { //{ "Name", "Type", "Lvl", "HP", "Loc1", "Loc2", "Loc3" },
         };
@@ -52,7 +62,8 @@ namespace ToOT
 
 
         public string[,] Vol4_Items = { //{ "Item", "Type", "Usage", "Aquired" },
-        { "", "", "", "", "" } };
+        { "", "", "", "" }
+        };
 
         public string[,] Vol4_Monsters = { //{ "Monster", "Type", "Lvl", "HP", "Loc1", "Loc2", "Loc3" },
         };
@@ -63,7 +74,7 @@ namespace ToOT
         public string[,] Vol4_BikeParts = {  // { "Part", "Type", "Aquired" },
         };
 
-        public string[,] Animals = { //{ "Unique_ID", "Name", "Vol. 1 Effect", "Vol. 2 Effect", "Vol. 3 Effect", "Volume 4 effect?"  },
+        public string[,] Animals = { //{ "Unique_ID", "Name", "Vol. 1 Effect", "Vol. 2 Effect", "Vol. 3 Effect", "Volume 4 effect"  },
             { "Gold Bird","Turns all breakable objects into chests.","Turns all breakable objects into chests.","Turns all breakable objects into chests.", "Volume 4 effect?"  },
             { "Moon Rabbit","Grants 200 experience points to each party member.","Grants 400 experience points to each party member.","Grants 600 experience points to each party member.", "Volume 4 effect?"  },
             { "Leviathan","Gives the kicker 3 Modifications.","Gives the kicker 5 Modifications.","Gives the kicker 7 Modifications.", "Volume 4 effect?"  },
@@ -100,6 +111,7 @@ namespace ToOT
         ,/*Party level ends in 6*/ { "Even Numbers", "N/a", "N/a", "N/a", "N/a", "Odd Numbers", "N/a", "N/a", "N/a", "N/a" }
         ,/*Party level ends in 7*/ { "0 or 5", "N/a", "2 or 7", "N/a", "4 or 9", "N/a", "1 or 6", "N/a", "3 or 9", "N/a" }
         ,/*Party level ends in 8*/ { "0", "3", "6", "9", "2", "5", "8", "1", "4", "7" }
-        ,/*Party level ends in 9*/ { "0 or 5", "N/a", "4 or 9", "N/a", "3 or 8", "N/a", "2 or 7", "N/a", "1 or 6", "N/a" } };
+        ,/*Party level ends in 9*/ { "0 or 5", "N/a", "4 or 9", "N/a", "3 or 8", "N/a", "2 or 7", "N/a", "1 or 6", "N/a" }
+        };
     }
 }
