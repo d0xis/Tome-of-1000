@@ -14,10 +14,16 @@ namespace ToOT
         { "Item3", "Type3", "Usage3", "Aquired3" }
         };
 
-        public string[,] Vol1_Monsters = { //{ "Name", "Type", "Lvl", "HP", "Description", Locations... },
-        { "Monster1", "Type2", "Lvl1", "HP1", "DescriptionA", "Loc1", "", "", "", "", "" },
-        { "Monster2", "Type2", "Lvl2", "HP2", "DescriptionB", "Loc1", "Loc2", "Loc3", "", "", "" },
-        { "Monster3", "Type3", "Lvl3", "HP3", "DescriptionC", "Loc1", "Loc2", "Loc3", "Loc4", "Loc5", "Loc6" }
+        public string[,] Vol1_Monsters = { //{ "Name", "Type", "Lvl", "HP", "Description" },
+        { "Monster1", "Type2", "Lvl1", "HP1", "DescriptionA" },
+        { "Monster2", "Type2", "Lvl2", "HP2", "DescriptionB" },
+        { "Monster3", "Type3", "Lvl3", "HP3", "DescriptionC" }
+        };
+
+        public string[,] Vol1_Monster_Locations = { //{ "Name", "Loc1", "Loc2", "Loc3", "Loc4", "Loc5", "loc6" }
+        };
+
+        public string[,] Vol1_Monster_Drops = { //{ "Name", "Drop1", "Drop2", "Drop3" }
         };
 
         public string[,] Vol1_KeyWords = { // { "Word", "Place", "Aquired" },
@@ -36,6 +42,12 @@ namespace ToOT
         };
 
         public string[,] Vol2_Monsters = { //{ "Name", "Type", "Lvl", "HP", "Loc1", "Loc2", "Loc3" },
+        };
+
+        public string[,] Vol2_Monster_Locations = { //{ "Name", "Loc1", "Loc2", "Loc3", "Loc4", "Loc5", "loc6" }
+        };
+
+        public string[,] Vol2_Monster_Drops = { //{ "Name", "Drop1", "Drop2", "Drop3" }
         };
 
         public string[,] Vol2_KeyWords = { // { "Word", "Place", "Aquired" },
@@ -61,6 +73,12 @@ namespace ToOT
         public string[,] Vol3_Monsters = { //{ "Name", "Type", "Lvl", "HP", "Loc1", "Loc2", "Loc3" },
         };
 
+        public string[,] Vol3_Monster_Locations = { //{ "Name", "Loc1", "Loc2", "Loc3", "Loc4", "Loc5", "loc6" }
+        };
+
+        public string[,] Vol3_Monster_Drops = { //{ "Name", "Drop1", "Drop2", "Drop3" }
+        };
+
         public string[,] Vol3_KeyWords = { // { "Word", "Place", "Aquired" },
         };
 
@@ -74,6 +92,12 @@ namespace ToOT
         };
 
         public string[,] Vol4_Monsters = { //{ "Monster", "Type", "Lvl", "HP", "Loc1", "Loc2", "Loc3" },
+        };
+
+        public string[,] Vol4_Monster_Locations = { //{ "Name", "Loc1", "Loc2", "Loc3", "Loc4", "Loc5", "loc6" }
+        };
+
+        public string[,] Vol4_Monster_Drops = { //{ "Name", "Drop1", "Drop2", "Drop3" }
         };
 
         public string[,] Vol4_KeyWords = { // { "Word", "Place", "Aquired" },

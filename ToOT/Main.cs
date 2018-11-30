@@ -12,6 +12,8 @@ namespace ToOT
         public int LevelCap;
         public string[,] VolItems = { };
         public string[,] VolMonsters = { };
+        public string[,] Vol1MonsterLoc = { };
+        public string[,] Vol1MonsterDrops = { };
         public string[,] VolBikeParts = { };
         public string[,] VolWords = { };
         GUData Data = new GUData();
@@ -48,10 +50,10 @@ namespace ToOT
             FillInfo("", "", "", "", "", "", false);
         }
 
-        public void PopTree(Boolean hideComp)
+        public void PopTree() //Populate tree from DB
         {
+            //ToDo: Check to hide if compleated
             TreeView vTree = aTree;
-            //Populate tree from DB
             vTree.BeginUpdate();
             vTree.Nodes.Clear();
             vTree.Nodes.Add("Item");
@@ -138,9 +140,11 @@ namespace ToOT
             LevelCap = 50;
             VolItems = Data.Vol1_Items;
             VolMonsters = Data.Vol1_Monsters;
+            Vol1MonsterLoc = Data.Vol1_Monster_Locations;
+            Vol1MonsterDrops = Data.Vol1_Monster_Drops;
             VolBikeParts = null;
             VolWords = Data.Vol1_KeyWords;
-            PopTree(Hide_chk.Checked);
+            PopTree();
             ToList();
         }
 
@@ -151,9 +155,11 @@ namespace ToOT
             LevelCap = 100;
             VolItems = Data.Vol2_Items;
             VolMonsters = Data.Vol2_Monsters;
+            Vol1MonsterLoc = Data.Vol2_Monster_Locations;
+            Vol1MonsterDrops = Data.Vol2_Monster_Drops;
             VolBikeParts = Data.Vol2_BikeParts;
             VolWords = Data.Vol2_KeyWords;
-            PopTree(Hide_chk.Checked);
+            PopTree();
             ToList();
         }
 
@@ -164,9 +170,11 @@ namespace ToOT
             LevelCap = 150;
             VolItems = Data.Vol3_Items;
             VolMonsters = Data.Vol3_Monsters;
+            Vol1MonsterLoc = Data.Vol3_Monster_Locations;
+            Vol1MonsterDrops = Data.Vol3_Monster_Drops;
             VolBikeParts = Data.Vol3_BikeParts;
             VolWords = Data.Vol3_KeyWords;
-            PopTree(Hide_chk.Checked);
+            PopTree();
             ToList();
         }
 
@@ -177,9 +185,11 @@ namespace ToOT
             LevelCap = 200;
             VolItems = Data.Vol4_Items;
             VolMonsters = Data.Vol4_Monsters;
+            Vol1MonsterLoc = Data.Vol4_Monster_Locations;
+            Vol1MonsterDrops = Data.Vol4_Monster_Drops;
             VolBikeParts = Data.Vol4_BikeParts;
             VolWords = Data.Vol4_KeyWords;
-            PopTree(Hide_chk.Checked);
+            PopTree();
             ToList();
         }
 
@@ -196,8 +206,7 @@ namespace ToOT
 
         private void Hide1_chk_CheckedChanged(object sender, EventArgs e)
         {
-            if (Hide_chk.Checked) { PopTree(true); }
-            else { PopTree(false); }
+            PopTree();
         }
 
         private void SetLocations(string[] sLocations)
@@ -219,9 +228,8 @@ namespace ToOT
             LocationLLabel.Text = sLevels;
         }
 
-        private void InfoSort(string iName, string iType)
+        private void GetInfo(string iName, string iType) //lookup Name from tree in INFO
         {
-            //lookup Name
             string sName = iName;
             string sLabel2 = "";
             string sLabel3 = "";
@@ -314,7 +322,7 @@ namespace ToOT
                     else
                     { SetLocation("Can be found in areas with levels ending in " + Found + "."); }
                     break;
-                case "Monster": //{ "Name", "Type", "Lvl", "HP", "Description", Locations... },
+                case "Monster": //{ "Name", "Type", "Lvl", "HP", "Description" },
                     cIndex = -1;
                     aIndex = 0;
                     isID = false;
@@ -329,7 +337,7 @@ namespace ToOT
                             sLabel3 = "HP:" + VolMonsters[aIndex, 3];
                             sDesc = VolMonsters[aIndex, 4];
                             List<string> mLoc = new List<string>();
-                            for (int m = 5; m <= 10; m++)
+                            for (int m = 1; m <= 6; m++)
                             {
                                 if (VolMonsters[aIndex, m] != "")
                                 {
@@ -497,7 +505,12 @@ namespace ToOT
         {
             TreeNode iType = aTree.SelectedNode;
             while (iType.Parent != null) { iType = iType.Parent; }
-            if (aTree.SelectedNode.Nodes.Count < 1) { InfoSort(aTree.SelectedNode.Text, iType.Text); }
+            if (aTree.SelectedNode.Nodes.Count < 1) { GetInfo(aTree.SelectedNode.Text, iType.Text); }
+        }
+
+        private void Search(string SearchText)
+        {
+            PopTree();
         }
         
         private void Exit_lbl_Click(object sender, EventArgs e)
