@@ -508,7 +508,7 @@ namespace ToOT
             if (aTree.SelectedNode.Nodes.Count < 1) { GetInfo(aTree.SelectedNode.Text, iType.Text); }
         }
 
-        private void Search(string SearchText)
+        private void SearchBox_TextChanged(object sender, EventArgs e)
         {
             PopTree();
         }

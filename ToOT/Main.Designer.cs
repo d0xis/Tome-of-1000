@@ -45,6 +45,8 @@
             this.PartyLabel = new System.Windows.Forms.Label();
             this.Complete_Check = new System.Windows.Forms.CheckBox();
             this.InfoBox = new System.Windows.Forms.GroupBox();
+            this.LocationList = new System.Windows.Forms.ComboBox();
+            this.LocationLLabel = new System.Windows.Forms.Label();
             this.LocLabel = new System.Windows.Forms.Label();
             this.DescLabel = new System.Windows.Forms.Label();
             this.InfoLabel3 = new System.Windows.Forms.Label();
@@ -54,8 +56,7 @@
             this.InfoPicture = new System.Windows.Forms.PictureBox();
             this.Hide_chk = new System.Windows.Forms.CheckBox();
             this.aTree = new System.Windows.Forms.TreeView();
-            this.LocationLLabel = new System.Windows.Forms.Label();
-            this.LocationList = new System.Windows.Forms.ComboBox();
+            this.SearchBox = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.Vol1_pic)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Vol2_pic)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Vol4_pic)).BeginInit();
@@ -159,6 +160,7 @@
             // 
             // ListGroup
             // 
+            this.ListGroup.Controls.Add(this.SearchBox);
             this.ListGroup.Controls.Add(this.AvgLevelBox);
             this.ListGroup.Controls.Add(this.label1);
             this.ListGroup.Controls.Add(this.PartyLevel3);
@@ -242,11 +244,11 @@
             // Complete_Check
             // 
             this.Complete_Check.AutoSize = true;
-            this.Complete_Check.Font = new System.Drawing.Font("dotHack//FONT", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Complete_Check.Font = new System.Drawing.Font("dotHack//FONT", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Complete_Check.ForeColor = System.Drawing.Color.Red;
             this.Complete_Check.Location = new System.Drawing.Point(324, 549);
             this.Complete_Check.Name = "Complete_Check";
-            this.Complete_Check.Size = new System.Drawing.Size(109, 22);
+            this.Complete_Check.Size = new System.Drawing.Size(132, 27);
             this.Complete_Check.TabIndex = 11;
             this.Complete_Check.Text = "Complete";
             this.Complete_Check.UseVisualStyleBackColor = true;
@@ -272,6 +274,29 @@
             this.InfoBox.TabIndex = 9;
             this.InfoBox.TabStop = false;
             this.InfoBox.Text = "Info";
+            // 
+            // LocationList
+            // 
+            this.LocationList.BackColor = System.Drawing.SystemColors.MenuText;
+            this.LocationList.Font = new System.Drawing.Font("Constantia", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LocationList.ForeColor = System.Drawing.SystemColors.Info;
+            this.LocationList.FormattingEnabled = true;
+            this.LocationList.Location = new System.Drawing.Point(190, 467);
+            this.LocationList.Name = "LocationList";
+            this.LocationList.Size = new System.Drawing.Size(490, 27);
+            this.LocationList.TabIndex = 9;
+            this.LocationList.Visible = false;
+            // 
+            // LocationLLabel
+            // 
+            this.LocationLLabel.AutoSize = true;
+            this.LocationLLabel.Font = new System.Drawing.Font("Constantia", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LocationLLabel.Location = new System.Drawing.Point(186, 470);
+            this.LocationLLabel.Name = "LocationLLabel";
+            this.LocationLLabel.Size = new System.Drawing.Size(77, 19);
+            this.LocationLLabel.TabIndex = 8;
+            this.LocationLLabel.Text = "sLocation";
+            this.LocationLLabel.Visible = false;
             // 
             // LocLabel
             // 
@@ -365,32 +390,20 @@
             this.aTree.LineColor = System.Drawing.Color.Gray;
             this.aTree.Location = new System.Drawing.Point(13, 40);
             this.aTree.Name = "aTree";
-            this.aTree.Size = new System.Drawing.Size(305, 531);
+            this.aTree.Size = new System.Drawing.Size(305, 503);
             this.aTree.TabIndex = 7;
             this.aTree.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.aTree_AfterSelect);
             // 
-            // LocationLLabel
+            // SearchBox
             // 
-            this.LocationLLabel.AutoSize = true;
-            this.LocationLLabel.Font = new System.Drawing.Font("Constantia", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LocationLLabel.Location = new System.Drawing.Point(186, 470);
-            this.LocationLLabel.Name = "LocationLLabel";
-            this.LocationLLabel.Size = new System.Drawing.Size(77, 19);
-            this.LocationLLabel.TabIndex = 8;
-            this.LocationLLabel.Text = "sLocation";
-            this.LocationLLabel.Visible = false;
-            // 
-            // LocationList
-            // 
-            this.LocationList.BackColor = System.Drawing.SystemColors.MenuText;
-            this.LocationList.Font = new System.Drawing.Font("Constantia", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LocationList.ForeColor = System.Drawing.SystemColors.Info;
-            this.LocationList.FormattingEnabled = true;
-            this.LocationList.Location = new System.Drawing.Point(190, 467);
-            this.LocationList.Name = "LocationList";
-            this.LocationList.Size = new System.Drawing.Size(490, 27);
-            this.LocationList.TabIndex = 9;
-            this.LocationList.Visible = false;
+            this.SearchBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.SearchBox.Font = new System.Drawing.Font("Courier New", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.SearchBox.ForeColor = System.Drawing.SystemColors.Window;
+            this.SearchBox.Location = new System.Drawing.Point(13, 549);
+            this.SearchBox.Name = "SearchBox";
+            this.SearchBox.Size = new System.Drawing.Size(305, 29);
+            this.SearchBox.TabIndex = 18;
+            this.SearchBox.TextChanged += new System.EventHandler(this.SearchBox_TextChanged);
             // 
             // Main_frm
             // 
@@ -454,6 +467,7 @@
         private System.Windows.Forms.TextBox PartyLevel2;
         private System.Windows.Forms.Label LocationLLabel;
         private System.Windows.Forms.ComboBox LocationList;
+        private System.Windows.Forms.TextBox SearchBox;
     }
 }
 
